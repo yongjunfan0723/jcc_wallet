@@ -1,6 +1,6 @@
 {
   "name": "jcc_wallet",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "wallet tool of jcc",
   "main": "lib/index.js",
   "files": [
@@ -55,6 +55,7 @@
   },
   "dependencies": {
     "call-lib": "^0.2.3",
+    "clone-deep": "^4.0.0",
     "ethereumjs-util": "^5.2.0",
     "jcc_common": "0.0.1",
     "jingtum-base-lib": "^1.0.9",
