@@ -3,7 +3,7 @@
 ## Usage
 
 ```javascript
-const bvcadtWallet = require('jcc_wallet').bvcadtWallet
+const bvcadtWallet = require("jcc_wallet").bvcadtWallet;
 // import { bvcadtWallet } from 'jcc_wallet'
 ```
 
@@ -46,6 +46,7 @@ const bvcadtWallet = require('jcc_wallet').bvcadtWallet
 /**
  * create bvcadt wallet
  *
- * @returns {IWalletModel}
+ * @param {ICreateOptionsModel} [opt={}]
+ * @returns {(IWalletModel | null)} return IWalletModel if succress, otherwise return null
  */
 ```

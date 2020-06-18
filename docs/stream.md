@@ -3,7 +3,7 @@
 ## Usage
 
 ```javascript
-const stmWallet = require('jcc_wallet').stmWallet
+const stmWallet = require("jcc_wallet").stmWallet;
 // import { stmWallet } from 'jcc_wallet'
 ```
 
@@ -46,6 +46,7 @@ const stmWallet = require('jcc_wallet').stmWallet
 /**
  * create stream wallet
  *
- * @returns {IWalletModel}
+ * @param {ICreateOptionsModel} [opt={}]
+ * @returns {(IWalletModel | null)} return IWalletModel if succress, otherwise return null
  */
 ```

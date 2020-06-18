@@ -41,10 +41,10 @@ const getAddress = (secret: string): string | null => {
 /**
  * create ripple wallet
  *
- * @param {ICreateOptionsModel} opt
- * @returns {IWalletModel}
+ * @param {ICreateOptionsModel} [opt={}]
+ * @returns {(IWalletModel | null)} return IWalletModel if succress, otherwise return null
  */
-const createWallet = (opt: ICreateOptionsModel): IWalletModel => {
+const createWallet = (opt: ICreateOptionsModel): IWalletModel | null => {
   try {
     const wallet = Wallet.generate(opt);
     return wallet;

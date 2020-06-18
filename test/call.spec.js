@@ -24,6 +24,22 @@ describe("test call", function() {
       let wallet = callWallet.createWallet(null);
       expect(wallet).to.equal(null);
     });
+
+    it("create call wallet successfully and valid when algorithm is ed25519", function() {
+      const opt = { algorithm: "ed25519" };
+      let wallet = callWallet.createWallet(opt);
+      let { secret, address } = wallet;
+      let a = callWallet.isValidAddress(address);
+      let b = callWallet.isValidSecret(secret);
+      expect(a).to.equal(true);
+      expect(b).to.equal(true);
+    });
+
+    it("create call wallet wrongly when algorithm is ed25519", function() {
+      const opt = { algorithm: "ed25519" };
+      let wallet = callWallet.createWallet(null, opt);
+      expect(wallet).to.equal(null);
+    });
   });
 
   describe("test isValidAddress", function() {

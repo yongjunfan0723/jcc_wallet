@@ -1,6 +1,6 @@
 const chai = require("chai");
 const expect = chai.expect;
-const { encryptWallet, encryptContact, decrypt } = require("../lib/util");
+const { encryptWallet, encryptContact, encrypt, decrypt } = require("../lib/util");
 
 describe("test jingchang", function() {
   describe("test encryptWallet", function() {
@@ -43,6 +43,20 @@ describe("test jingchang", function() {
       let data = encryptContact("123456", [123456789]);
       let contact = decrypt("123456", data);
       expect(contact).to.equal("[123456789]");
+    });
+  });
+
+  describe("test encrypt and decrypt", function() {
+    it("should encrypt correctly", function() {
+      let data = encrypt("123456", "shTJVfLFK9JdbRmN3tCLSoMy36yiD", {});
+      let decryptData = decrypt("123456", data);
+      expect(decryptData).to.equal("shTJVfLFK9JdbRmN3tCLSoMy36yiD");
+    });
+
+    it("should encrypt correctly if the opts is undefined", function() {
+      let data = encrypt("123456", "shTJVfLFK9JdbRmN3tCLSoMy36yiD");
+      let decryptData = decrypt("123456", data);
+      expect(decryptData).to.equal("shTJVfLFK9JdbRmN3tCLSoMy36yiD");
     });
   });
 });

@@ -67,5 +67,21 @@ describe("test ripple", function() {
       const wallet = rippleWallet.createWallet(null);
       expect(wallet).to.null;
     });
+
+    it("create ripple wallet successfully and valid when algorithm is ed25519", function() {
+      const opt = { algorithm: "ed25519" };
+      const wallet = rippleWallet.createWallet(opt);
+      const { secret, address } = wallet;
+      const isValidAddress = rippleWallet.isValidAddress(address);
+      const isValidSecret = rippleWallet.isValidSecret(secret);
+      expect(isValidAddress).to.equal(true);
+      expect(isValidSecret).to.equal(true);
+    });
+
+    it("create ripple wallet wrongly when algorithm is ed25519", function() {
+      const opt = { algorithm: "ed25519" };
+      const wallet = rippleWallet.createWallet(null, opt);
+      expect(wallet).to.equal(null);
+    });
   });
 });

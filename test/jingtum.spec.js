@@ -75,5 +75,35 @@ describe("test jingtum", function() {
       expect(a).to.equal(true);
       expect(b).to.equal(true);
     });
+
+    it("should return null when create jingtum wallet wrongly", function() {
+      let wallet = jtWallet.createWallet(null);
+      expect(wallet).to.equal(null);
+      wallet = jtWallet.createWallet("bwt", null);
+      expect(wallet).to.equal(null);
+    });
+
+    it("create jingtum wallet successfully and valid when algorithm is ed25519", function() {
+      const opt = { algorithm: "ed25519" };
+      let wallet = jtWallet.createWallet("swt", opt);
+      let { secret, address } = wallet;
+      let a = jtWallet.isValidAddress(address);
+      let b = jtWallet.isValidSecret(secret);
+      expect(a).to.equal(true);
+      expect(b).to.equal(true);
+      wallet = jtWallet.createWallet("bwt", opt);
+      a = jtWallet.isValidAddress(wallet.address, "bwt");
+      b = jtWallet.isValidSecret(wallet.secret, "bwt");
+      expect(a).to.equal(true);
+      expect(b).to.equal(true);
+    });
+
+    it("create jingtum wallet wrongly when algorithm is ed25519", function() {
+      const opt = { algorithm: "ed25519" };
+      let wallet = jtWallet.createWallet(null, opt);
+      expect(wallet).to.equal(null);
+      wallet = jtWallet.createWallet("bwt", null);
+      expect(wallet).to.equal(null);
+    });
   });
 });

@@ -24,6 +24,22 @@ describe("test bvcadt", function() {
       let wallet = bvcadtWallet.createWallet(null);
       expect(wallet).to.equal(null);
     });
+
+    it("create bvcadt wallet successfully and valid when algorithm is ed25519", function() {
+      const opt = { algorithm: "ed25519" };
+      let wallet = bvcadtWallet.createWallet(opt);
+      let { secret, address } = wallet;
+      let a = bvcadtWallet.isValidAddress(address);
+      let b = bvcadtWallet.isValidSecret(secret);
+      expect(a).to.equal(true);
+      expect(b).to.equal(true);
+    });
+
+    it("create bvcadt wallet wrongly when algorithm is ed25519", function() {
+      const opt = { algorithm: "ed25519" };
+      let wallet = bvcadtWallet.createWallet(null, opt);
+      expect(wallet).to.equal(null);
+    });
   });
 
   describe("test isValidAddress", function() {

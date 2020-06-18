@@ -3,7 +3,7 @@
 ## Usage
 
 ```javascript
-const jtWallet = require('jcc_wallet').jtWallet
+const jtWallet = require("jcc_wallet").jtWallet;
 // import { jtWallet } from 'jcc_wallet'
 ```
 
@@ -54,6 +54,7 @@ const jtWallet = require('jcc_wallet').jtWallet
  *
  * @param {string} [chain="swt"] the default value is `swt` which means create swtc wallet,
  * if the value is `bwt` which means create bizain wallet
- * @returns {IWalletModel}
+ * @param {ICreateOptionsModel} [opt={}]
+ * @returns {(IWalletModel | null)} return IWalletModel if succress, otherwise return null
  */
 ```

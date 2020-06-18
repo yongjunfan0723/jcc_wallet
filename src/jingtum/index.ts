@@ -48,10 +48,16 @@ const getAddress = (secret: string, chain: string = "swt"): string | null => {
  *
  * @param {string} [chain="swt"] the default value is `swt` which means create swtc wallet,
  * if the value is `bwt` which means create bizain wallet
- * @returns {IWalletModel}
+ * @param {ICreateOptionsModel} [opt={}]
+ * @returns {(IWalletModel | null)} return IWalletModel if succress, otherwise return null
  */
-const createWallet = (chain: string = "swt"): IWalletModel => {
-  const wallet = WalletFactory(chain).generate();
+const createWallet = (chain: string = "swt", opt: ICreateOptionsModel = {}): IWalletModel | null => {
+  let wallet: IWalletModel;
+  try {
+    wallet = WalletFactory(chain).generate(opt);
+  } catch (error) {
+    wallet = null;
+  }
   return wallet;
 };
 

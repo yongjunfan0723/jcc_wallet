@@ -11,13 +11,34 @@ let invalidSecrets = ["", null, undefinedValue, {}, [], "xxxx", testSecret.subst
 
 describe("test stm", function() {
   describe("test createWallet", function() {
-    it("the wallet should be valid when create call wallet successfully", function() {
+    it("the wallet should be valid when create stream wallet successfully", function() {
       let wallet = stmWallet.createWallet();
       let { secret, address } = wallet;
       let a = stmWallet.isValidAddress(address);
       let b = stmWallet.isValidSecret(secret);
       expect(a).to.equal(true);
       expect(b).to.equal(true);
+    });
+
+    it("should return null when create stream wallet wrongly", function() {
+      let wallet = stmWallet.createWallet(null);
+      expect(wallet).to.equal(null);
+    });
+
+    it("create stream wallet successfully and valid when algorithm is ed25519", function() {
+      const opt = { algorithm: "ed25519" };
+      let wallet = stmWallet.createWallet(opt);
+      let { secret, address } = wallet;
+      let a = stmWallet.isValidAddress(address);
+      let b = stmWallet.isValidSecret(secret);
+      expect(a).to.equal(true);
+      expect(b).to.equal(true);
+    });
+
+    it("create stream wallet wrongly when algorithm is ed25519", function() {
+      const opt = { algorithm: "ed25519" };
+      let wallet = stmWallet.createWallet(null, opt);
+      expect(wallet).to.equal(null);
     });
   });
 

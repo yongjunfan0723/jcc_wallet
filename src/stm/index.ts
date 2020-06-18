@@ -26,10 +26,17 @@ const isValidAddress = (address: string): boolean => {
 /**
  * create stream wallet
  *
- * @returns {IWalletModel}
+ * @param {ICreateOptionsModel} [opt={}]
+ * @returns {(IWalletModel | null)} return IWalletModel if succress, otherwise return null
  */
-const createWallet = (): IWalletModel => {
-  return Wallet.generate();
+const createWallet = (opt: ICreateOptionsModel = {}): IWalletModel | null => {
+  let wallet: IWalletModel;
+  try {
+    wallet = Wallet.generate(opt);
+  } catch (error) {
+    wallet = null;
+  }
+  return wallet;
 };
 
 /**

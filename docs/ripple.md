@@ -3,7 +3,7 @@
 ## Usage
 
 ```javascript
-const rippleWallet = require('jcc_wallet').rippleWallet
+const rippleWallet = require("jcc_wallet").rippleWallet;
 // import { rippleWallet } from 'jcc_wallet'
 ```
 
@@ -46,6 +46,7 @@ const rippleWallet = require('jcc_wallet').rippleWallet
 /**
  * create ripple wallet
  *
- * @returns {IWalletModel}
+ * @param {ICreateOptionsModel} [opt={}]
+ * @returns {(IWalletModel | null)} return IWalletModel if succress, otherwise return null
  */
 ```

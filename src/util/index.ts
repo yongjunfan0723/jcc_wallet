@@ -42,7 +42,7 @@ const decrypt = (password: string, encryptData: IKeystoreModel): string => {
  * @param {IEncryptModel} [opts={}]
  * @returns {IKeystoreModel}
  */
-const encrypt = (password: string, data: string, opts: IEncryptModel): IKeystoreModel => {
+const encrypt = (password: string, data: string, opts: IEncryptModel = {}): IKeystoreModel => {
   const iv = opts.iv || randombytes(16).toString("hex");
   const kdfparams = {
     dklen: opts.dklen || 32,
