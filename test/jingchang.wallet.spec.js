@@ -162,6 +162,21 @@ describe("test JingchangWallet", function() {
       });
     });
 
+    it("return jingchang wallet if the given secret is undefined and opt is't undefined", function(done) {
+      const opt = { algorithm: "ed25519" };
+      JingchangWallet.generate("123", undefined, opt).then((wallet) => {
+        expect(JingchangWallet.isValid(wallet)).to.true;
+        const inst = new JingchangWallet(wallet);
+        inst.getAddress().then((address) => {
+          expect(jtWallet.isValidAddress(address)).to.true;
+          inst.getSecretWithType("123").then((secret) => {
+            expect(jtWallet.isValidSecret(secret)).to.true;
+            done();
+          });
+        });
+      });
+    });
+
     it("return jingchang wallet if the given secret is valid", function(done) {
       JingchangWallet.generate("123", testSecret).then((wallet) => {
         expect(JingchangWallet.isValid(wallet)).to.true;

@@ -86,14 +86,15 @@ export default class JingchangWallet {
    * @static
    * @param {string} password password for keystore
    * @param {string} [secret] swtc chain's secret
+   * @param {ICreateOptionsModel} [opt={}]
    * @returns {Promise<IJingchangWalletModel>} resolve jingchang wallet if success.
    * @memberof JingchangWallet
    */
-  public static generate(password: string, secret?: string): Promise<IJingchangWalletModel> {
+  public static generate(password: string, secret?: string, opt: ICreateOptionsModel = {}): Promise<IJingchangWalletModel> {
     return new Promise((resolve, reject) => {
       const keypairs: any = {};
       if (secret === undefined) {
-        const wallet = createWallet();
+        const wallet = createWallet("swt", opt);
         secret = wallet.secret;
         keypairs.address = wallet.address;
       } else {

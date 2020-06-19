@@ -4,7 +4,7 @@
 
 ![npm](https://img.shields.io/npm/v/jcc_wallet.svg)
 [![Build Status](https://travis-ci.com/JCCDex/jcc_wallet.svg?branch=master)](https://travis-ci.com/JCCDex/jcc_wallet)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/14616fffd838456c8aaaef650be43dde)](https://www.codacy.com/app/GinMu/jcc_wallet?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JCCDex/jcc_wallet&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/14616fffd838456c8aaaef650be43dde)](https://www.codacy.com/app/GinMu/jcc_wallet?utm_source=github.com&utm_medium=referral&utm_content=JCCDex/jcc_wallet&utm_campaign=Badge_Grade)
 [![Coverage Status](https://coveralls.io/repos/github/JCCDex/jcc_wallet/badge.svg?branch=master)](https://coveralls.io/github/JCCDex/jcc_wallet?branch=master)
 [![Dependencies](https://img.shields.io/david/JCCDex/jcc_wallet.svg?style=flat-square)](https://david-dm.org/JCCDex/jcc_wallet)
 [![npm downloads](https://img.shields.io/npm/dm/jcc_wallet.svg)](http://npm-stat.com/charts.html?package=jcc_wallet)
@@ -14,9 +14,9 @@
 
 [jcc_wallet](https://github.com/JCCDex/jcc_wallet) is a wallet toolkit of JCCDex. At present, it can handle the creation and verification of [jingtum](http://swtc.top/index.html), [moac](https://www.moac.io/), [ethereum](https://ethereum.org/), [stm](https://labs.stream/en/), [call](http://www.callchain.live/) & [bizain](https://bizain.net/) wallet, import and export wallet with keystore file, and set password for wallet.
 
-[jcc_wallet](https://github.com/JCCDex/jcc_wallet)是井畅交换平台的钱包处理工具，目前可以处理[jingtum](http://swtc.top/index.html), [moac](https://www.moac.io/), [ethereum](https://ethereum.org/), [stm](https://labs.stream/en/), [call](http://www.callchain.live/)以及[bizain](https://bizain.net/)钱包的创建和校验，以keystore形式导入和导出钱包，设置钱包交易密码。
+[jcc_wallet](https://github.com/JCCDex/jcc_wallet)是井畅交换平台的钱包处理工具，目前可以处理[jingtum](http://swtc.top/index.html), [moac](https://www.moac.io/), [ethereum](https://ethereum.org/), [stm](https://labs.stream/en/), [call](http://www.callchain.live/)以及[bizain](https://bizain.net/)钱包的创建和校验，以 keystore 形式导入和导出钱包，设置钱包交易密码。
 
-***[jcc_wallet](https://github.com/JCCDex/jcc_walle) Support running in browsers***
+**_[jcc_wallet](https://github.com/JCCDex/jcc_walle) Support running in browsers_**
 
 井畅应用交流群: 557524730
 
@@ -63,7 +63,7 @@ Support multiple wallet keystore for each type.
 ### Usage
 
 ```javascript
-const JingchangWallet = require('jcc_wallet').JingchangWallet
+const JingchangWallet = require("jcc_wallet").JingchangWallet;
 // import { JingchangWallet } from 'jcc_wallet'
 ```
 
@@ -78,7 +78,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {boolean} [samePassword=true] if the value is true, use the default swt keystore's password
  * which be generated in the beginning as password for other type.
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### generate
@@ -90,9 +90,10 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @static
  * @param {string} password password for keystore
  * @param {string} [secret] swtc chain's secret
+ * @param {ICreateOptionsModel} [opt={}]
  * @returns {Promise<IJingchangWalletModel>} resolve jingchang wallet if success.
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### isValid
@@ -105,7 +106,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {*} wallet
  * @returns {boolean} return true if valid.
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### get
@@ -117,7 +118,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @static
  * @returns {(IJingchangWalletModel | null)} return jingchang wallet or null.
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### clear
@@ -128,7 +129,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  *
  * @static
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### save
@@ -140,7 +141,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @static
  * @param {IJingchangWalletModel} wallet
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### deriveKeyPair
@@ -196,7 +197,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {IJingchangWalletModel} jcWallet
  * @returns {Array<IKeystoreModel>} return wallets if valid, otherwise return empty array.
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### setJingchangWallet
@@ -207,7 +208,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  *
  * @param {IJingchangWalletModel} wallet
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### getAddress
@@ -219,7 +220,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {string} [type="swt"]
  * @returns {Promise<string>} resolve address if success
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### getWalletWithType
@@ -231,7 +232,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {string} [type="swt"]
  * @returns {Promise<IKeystoreModel>} resolve default wallet keystore if success.
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### getWalletWithAddress
@@ -243,7 +244,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {string} address
  * @returns {Promise<IKeystoreModel>} resolve wallet keystore if success.
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### hasDefault
@@ -255,7 +256,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {string} [type="swt"]
  * @returns {boolean} return true if has default.
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### getSecretWithType
@@ -268,7 +269,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {string} [type="swt"]
  * @returns {Promise<string>} resolve secret if success.
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### getSecretWithAddress
@@ -281,7 +282,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {string} address
  * @returns {Promise<string>} resolve secret if success.
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### changeWholePassword
@@ -295,7 +296,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {string} newPassword
  * @returns {Promise<IJingchangWalletModel>} resolve new jingchang wallet if success
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### changePasswordWithAddress
@@ -310,7 +311,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {string} newPassword
  * @returns {Promise<IJingchangWalletModel>} resolve new jingchang wallet if success
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### removeWalletWithType
@@ -321,7 +322,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {string} [type="swt"]
  * @returns {Promise<IJingchangWalletModel>} resolve new jingchang wallet if success
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### removeWalletWithAddress
@@ -333,7 +334,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {string} address
  * @returns {Promise<IJingchangWalletModel>} resolve new jingchang wallet if success
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### setDefaultWallet
@@ -345,7 +346,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {string} address
  * @returns {Promise<IJingchangWalletModel>} resolve new jingchang wallet if success
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### importSecret
@@ -360,7 +361,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {(secret: string) => string} retriveSecret
  * @returns {Promise<IJingchangWalletModel>} resolve new jingchang wallet if success
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### findWallet
@@ -374,7 +375,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @returns {IKeystoreModel} return wallet keystore if existent, otherwise throw `keystore is invalid`
  * if the jingchang wallet is invalid or throw `wallet is empty` if the wallet isn't existent
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### getEncryptData
@@ -388,7 +389,7 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {IKeypairsModel} keypairs
  * @returns {IKeystoreModel}
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ### saveWallet
@@ -402,11 +403,11 @@ const JingchangWallet = require('jcc_wallet').JingchangWallet
  * @param {IKeypairsModel} keypairs
  * @returns {Promise<IJingchangWalletModel>} resolve new jingchang wallet if success
  * @memberof JingchangWallet
-*/
+ */
 ```
 
 ## Deprecated API
 
-***Deprecated api will be removed after 2020.1.1, please update asap.***
+**_Deprecated api will be removed after 2020.1.1, please update asap._**
 
 For more see [deprecatedAPI](https://github.com/JCCDex/jcc_wallet/blob/master/deprecatedAPI.md).
