@@ -16,7 +16,7 @@
 
 [jcc_wallet](https://github.com/JCCDex/jcc_wallet)是井畅交换平台的钱包处理工具，目前可以处理[jingtum](http://swtc.top/index.html), [moac](https://www.moac.io/), [ethereum](https://ethereum.org/), [stm](https://labs.stream/en/), [call](http://www.callchain.live/)以及[bizain](https://bizain.net/)钱包的创建和校验，以 keystore 形式导入和导出钱包，设置钱包交易密码。
 
-**_[jcc_wallet](https://github.com/JCCDex/jcc_walle) Support running in browsers_**
+**_[jcc_wallet](https://github.com/JCCDex/jcc_wallet) Support running in browsers_**
 
 井畅应用交流群: 557524730
 
@@ -89,8 +89,8 @@ const JingchangWallet = require("jcc_wallet").JingchangWallet;
  *
  * @static
  * @param {string} password password for keystore
- * @param {string} [secret] swtc chain's secret
- * @param {ICreateOptionsModel} [opt={}]
+ * @param {string} [secret] jingtum and alliance chain wallet secret
+ * @param {string} [type="swt"] wallet type
  * @returns {Promise<IJingchangWalletModel>} resolve jingchang wallet if success.
  * @memberof JingchangWallet
  */
