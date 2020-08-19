@@ -28,7 +28,8 @@ const jingchangWallet = require("jcc_wallet").JingchangWallet;
  *
  * @static
  * @param {string} password password for keystore
- * @param {string} [secret] swtc chain's secret
+ * @param {string} [secret] jingtum and alliance chain wallet secret
+ * @param {string} [type="swt"] wallet type
  * @param {ICreateOptionsModel} [opt={}]
  * @returns {Promise<IJingchangWalletModel>} resolve jingchang wallet if success.
  * @memberof JingchangWallet

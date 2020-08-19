@@ -40,6 +40,9 @@ let testPassword = "1qaz2WSX";
 let testAddress = "jpgWGpfHz8GxqUjz5nb6ej8eZJQtiF6KhH";
 let testSecret = "snfXQMEVbbZng84CcfdKDASFRi4Hf";
 
+let testSeaaAddress = "d38GkqA1bfmJ9BrjPBgmyoZpH7tpDkDGmo";
+let testSeaaSecret = "sszDH3tKmwP97sT14kBhS3afaNMXA";
+
 const testEthereumSecret = "ca6dbabef201dce8458f29b2290fef4cb80df3e16fef96347c3c250a883e4486";
 const testEthereumAddress = "0x2995c1376a852e4040caf9dbae2c765e24c37a15";
 
@@ -148,7 +151,7 @@ describe("test JingchangWallet", function() {
   });
 
   describe("static, test generate api", function() {
-    it("return jingchang wallet if the given secret is undefined", function(done) {
+    it("return jingchang wallet if the given secret is undefined and type is default", function(done) {
       JingchangWallet.generate("123").then((wallet) => {
         expect(JingchangWallet.isValid(wallet)).to.true;
         const inst = new JingchangWallet(wallet);
@@ -162,9 +165,23 @@ describe("test JingchangWallet", function() {
       });
     });
 
-    it("return jingchang wallet if the given secret is undefined and opt is't undefined", function(done) {
+    it("return jingchang wallet if the given secret is undefined and type is't default", function(done) {
+      JingchangWallet.generate("123", undefined, "seaa").then((wallet) => {
+        expect(JingchangWallet.isValid(wallet)).to.true;
+        const inst = new JingchangWallet(wallet);
+        inst.getAddress("seaa").then((address) => {
+          expect(jtWallet.isValidAddress(address, "seaa")).to.true;
+          inst.getSecretWithType("123", "seaa").then((secret) => {
+            expect(jtWallet.isValidSecret(secret, "seaa")).to.true;
+            done();
+          });
+        });
+      });
+    });
+
+    it("return jingchang wallet if the given secret is undefined,type is default and opt is't undefined", function(done) {
       const opt = { algorithm: "ed25519" };
-      JingchangWallet.generate("123", undefined, opt).then((wallet) => {
+      JingchangWallet.generate("123", undefined, "swt", opt).then((wallet) => {
         expect(JingchangWallet.isValid(wallet)).to.true;
         const inst = new JingchangWallet(wallet);
         inst.getAddress().then((address) => {
@@ -177,7 +194,22 @@ describe("test JingchangWallet", function() {
       });
     });
 
-    it("return jingchang wallet if the given secret is valid", function(done) {
+    it("return jingchang wallet if the given secret is undefined,type is't default and opt is't undefined", function(done) {
+      const opt = { algorithm: "ed25519" };
+      JingchangWallet.generate("123", undefined, "seaa", opt).then((wallet) => {
+        expect(JingchangWallet.isValid(wallet)).to.true;
+        const inst = new JingchangWallet(wallet);
+        inst.getAddress("seaa").then((address) => {
+          expect(jtWallet.isValidAddress(address, "seaa")).to.true;
+          inst.getSecretWithType("123", "seaa").then((secret) => {
+            expect(jtWallet.isValidSecret(secret, "seaa")).to.true;
+            done();
+          });
+        });
+      });
+    });
+
+    it("return jingchang wallet if the given secret is valid when type is default", function(done) {
       JingchangWallet.generate("123", testSecret).then((wallet) => {
         expect(JingchangWallet.isValid(wallet)).to.true;
         const inst = new JingchangWallet(wallet);
@@ -191,8 +223,29 @@ describe("test JingchangWallet", function() {
       });
     });
 
-    it("reject `secret is invalid` if the given secret is invalid", function(done) {
+    it("return jingchang wallet if the given secret is valid when type is't default", function(done) {
+      JingchangWallet.generate("123", testSeaaSecret, "seaa").then((wallet) => {
+        expect(JingchangWallet.isValid(wallet)).to.true;
+        const inst = new JingchangWallet(wallet);
+        inst.getAddress("seaa").then((address) => {
+          expect(address).to.equal(testSeaaAddress);
+          inst.getSecretWithType("123", "seaa").then((secret) => {
+            expect(secret).to.equal(testSeaaSecret);
+            done();
+          });
+        });
+      });
+    });
+
+    it("reject `secret is invalid` if the given secret is invalid when type is default", function(done) {
       JingchangWallet.generate("123", "123").catch((err) => {
+        expect(err.message).to.equal("secret is invalid");
+        done();
+      });
+    });
+
+    it("reject `secret is invalid` if the given secret is invalid when type is't default", function(done) {
+      JingchangWallet.generate("123", "123", "seaa").catch((err) => {
         expect(err.message).to.equal("secret is invalid");
         done();
       });

@@ -85,28 +85,29 @@ export default class JingchangWallet {
    *
    * @static
    * @param {string} password password for keystore
-   * @param {string} [secret] swtc chain's secret
+   * @param {string} [secret] wallet secret
+   * @param {string} [type="swt"] wallet type
    * @param {ICreateOptionsModel} [opt={}]
    * @returns {Promise<IJingchangWalletModel>} resolve jingchang wallet if success.
    * @memberof JingchangWallet
    */
-  public static generate(password: string, secret?: string, opt: ICreateOptionsModel = {}): Promise<IJingchangWalletModel> {
+  public static generate(password: string, secret?: string, type: ISupportType = "swt", opt: ICreateOptionsModel = {}): Promise<IJingchangWalletModel> {
     return new Promise((resolve, reject) => {
       const keypairs: any = {};
       if (secret === undefined) {
-        const wallet = createWallet("swt", opt);
+        const wallet = createWallet(type, opt);
         secret = wallet.secret;
         keypairs.address = wallet.address;
       } else {
-        if (!isValidSecret(secret)) {
+        if (!isValidSecret(secret, type)) {
           return reject(new Error(SECRET_IS_INVALID));
         }
-        keypairs.address = getAddress(secret);
+        keypairs.address = getAddress(secret, type);
       }
       keypairs.secret = secret;
-      keypairs.type = "swt";
+      keypairs.type = type;
       keypairs.default = true;
-      keypairs.alias = "swt wallet";
+      keypairs.alias = `${type} wallet`;
       const jcWallet: IJingchangWalletModel = {};
       const walletObj = encryptWallet(password, keypairs);
       jcWallet.version = JingchangWallet.version;

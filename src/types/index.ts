@@ -76,3 +76,5 @@ declare interface IEncrypt {
   ciphertext: string;
   mac: string;
 }
+
+declare type ISupportType = "swt" | "bwt" | "seaa";
